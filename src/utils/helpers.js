@@ -5,11 +5,7 @@ export const toTitleCase = (word) => {
 };
 
 export function kebabToCamel(string, pascal = false) {
-  let converter = (matches) => {
-    return matches[1]?.toUpperCase();
-  };
-
-  let result = string?.replace(/(-\w)/g, converter);
+  let result = string?.replace(/(-\w)/g, () => matches[1]?.toUpperCase());
 
   if (pascal) {
     result = result?.charAt(0)?.toUpperCase() + result?.slice(1);
