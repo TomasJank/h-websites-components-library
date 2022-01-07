@@ -1,0 +1,43 @@
+@use '../public' as *;
+
+.h-menu-dropdown-holder {
+    width: 408px;
+    margin-top: 18px;
+    left: 50%;
+    box-shadow: 0 4px 9px 0 rgba(67, 65, 79, 0.1);
+    transform: translate(-50%, 0);
+    border-radius: 4px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translate(-50%, 0) rotate(-315deg);
+        border-radius: 3px;
+        background-color: color-get('white');
+    }
+    &__item {
+        transition: transform ease-in-out .3s;
+        &:not(:first-child) {
+            margin-top: 16px;
+        }
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+}
+.navigation--colored .h-menu-dropdown-holder {
+    top: 48px;
+}
+.h-menu-dropdown-holder
+.h-menu-mobile-item-hover-change:hover {
+    * {
+        color: color-get(primary) !important;
+    }
+}
+.h-menu-icon {
+    width: 44px;
+    height: 44px;
+}

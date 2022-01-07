@@ -1,0 +1,16 @@
+@use 'sass:map' as map;
+/********************************************************************
+    Get Colors color-get(color, shade) shade is optional;
+    Get Mixins by prefix mix-* egz. mix-media-breakpoint-up();
+    Get Variables by prefix var-*;
+    Get Functions by prefix f-*;
+********************************************************************/
+@use '../public' as *;
+
+/********************************************************************
+    Add your sale name and background 
+    image inside $_backgrounds map:
+********************************************************************/
+@import 'sale-backgrounds';
+
+// IMPORT SALE TEMPLATES BELOW

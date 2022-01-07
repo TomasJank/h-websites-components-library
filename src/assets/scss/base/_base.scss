@@ -1,0 +1,19 @@
+@use "sass:map" as map;
+@use '../public' as *;
+
+.container {
+    padding: 0 16px;
+    margin: 0 auto;
+    width: calc(map-get($var-container-widths, xs) - 32px);
+    @include mix-media-breakpoint-up(md) {
+        padding: 0 24px;
+        width: calc(map-get($var-container-widths, md) - 48px);
+    }
+    @include mix-media-breakpoint-up(lg) {
+        padding: 0 40px;
+        width: calc(map-get($var-container-widths, lg) - 80px);
+    }
+    @include mix-media-breakpoint-up(xl) {
+        width: map-get($var-container-widths, xl);
+    }
+}

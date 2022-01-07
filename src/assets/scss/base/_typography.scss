@@ -1,0 +1,77 @@
+@use '../public' as *;
+
+html, body * {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+}
+h1, h2, h3, h4, h5, h6, b, strong, .price-header, .price-pt, .header-currency {
+    font-weight: 700;
+}
+h1 {
+    @include mix-font-props(40px, 48px);
+}
+h2 {
+    @include mix-font-props(36px, 40px);
+}
+h3 {
+    @include mix-font-props(24px, 32px);
+}
+.price-header {
+    @include mix-font-props(80px, 88px);
+}
+.price-pt {
+    @include mix-font-props(56px, 64px);
+}
+.header-currency {
+    @include mix-font-props(48px, 56px);
+}
+.hb {
+    @extend .body-1;
+    font-weight: 700;
+}
+body, .body-1 {
+    @include mix-font-props(16px, 24px);
+}
+.body-2 {
+    @extend .body-3;
+    font-weight: 700
+}
+.body-3 {
+    @include mix-font-props(14px, 24px);
+}
+.boddy-uppercase {
+    @extend .body-3;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #727586;
+}
+.body-strikethrough {
+    @extend .body-3;
+    text-decoration-line: line-through;
+    color: #727586;
+}
+.h-menu-item {
+    @include mix-font-props(18px, 24px);
+}
+.h-menu-sub-item {
+    @include mix-font-props(14px, 24px);
+}
+.pt-title {
+    @include mix-font-props(16px, 1);
+    @include mix-media-breakpoint-up(md) {
+        @include mix-font-props(17px, 1.4);
+    }
+    @include mix-media-breakpoint-up(xl) {
+        @include mix-font-props(18px, 1);
+    }
+}
+.pt-feature {
+    @include mix-font-props(14px, 1);
+    @include mix-media-breakpoint-up(md) {
+        @include mix-font-props(13px, 1);
+    }
+    @include mix-media-breakpoint-up(xl) {
+        @include mix-font-props(16px, 1.2);
+    }
+}

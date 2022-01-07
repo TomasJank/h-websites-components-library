@@ -1,0 +1,34 @@
+@use '../public' as *;
+
+// Generates base background and text color helpers
+@include color-generate-base();
+@include color-generate-gradient();
+
+/************************************************************
+    Generates base helpers for properties:
+    -----------------------------------------------------
+    display, position z-index, flex, margins and paddings,
+    width and height, cursor, font-weight
+************************************************************/
+@include mix-position();
+@include mix-cursor();
+@include mix-font-weight();
+@include mix-text-align(general);
+@include mix-display(general);
+@include mix-z-index(general);
+@include mix-flex-props(general);
+@include mix-flex-directions(general);
+@include mix-margins-and-paddings(general);
+@include mix-fluid-width-and-height(general);
+
+@each $key, $breakpoint in $var-breakpoints {
+    @include mix-media-breakpoint-up($key) {
+        @include mix-display($key);
+        @include mix-z-index($key);
+        @include mix-text-align($key);
+        @include mix-flex-props($key);
+        @include mix-flex-directions($key);
+        @include mix-margins-and-paddings($key);
+        @include mix-fluid-width-and-height($key);
+    }
+}

@@ -1,0 +1,127 @@
+@use 'sass:map' as map;
+@use "sass:meta" as meta;
+@use 'variables' as *;
+@use 'functions' as function;
+
+@mixin media-breakpoint-up($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) == false {
+        @warn "There is no #{$breakpoint} in breakpoints specified. Please only use xl, lg, md, xs.";
+    }
+    @media (min-width: map.get($breakpoints, $breakpoint) + 'px' ) {
+        @content;
+    }
+}
+@mixin media-breakpoint-down($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) == false {
+        @warn "There is no #{$breakpoint} in breakpoints specified. Please only use xl, lg, md, xs.";
+    }
+    @media (max-width: map.get($breakpoints, $breakpoint) + 'px' ) {
+        @content;
+    }
+}
+@mixin font-props($size, $height) {
+    font-size: $size;
+    line-height: $height;
+}
+@mixin generate-prop($mode, $iterable, $two-props: false) {
+    @if $mode == general {
+        $mode: '';
+    } @else {
+        $mode: "-" + $mode;
+    }
+    @if $two-props {
+        @each $name, $prop in $iterable {
+            @content($mode, $prop, $name);
+        }
+    } @else {
+        @each $prop in $iterable {
+            @content($mode, $prop);
+        }
+    }
+}
+@mixin display($mode) {
+    @include generate-prop($mode, $display) using ($mode, $prop) {
+        .d#{$mode}-#{$prop} {
+            display: $prop !important;
+        }
+    }
+}
+@mixin margins-and-paddings($mode) {
+    @include generate-prop($mode, $spacings) using ($mode, $space) {
+        @each $name, $spacing-prop in $spacing-props {
+            .#{$name}-#{$space}#{$mode} {
+                $spacing-unit: '';
+                @if $space != auto {
+                    $spacing-unit: 'px'
+                }
+                #{$spacing-prop}: #{$space}#{$spacing-unit} !important;
+            }
+        }
+    }
+}
+@mixin fluid-width-and-height($mode) {
+    @include generate-prop($mode, $percentage-values) using ($mode, $space) {
+        @each $name in (height, width) {
+            $classNameStart: 'w';
+            @if $name == height {
+                $classNameStart: 'h';
+            }
+            .#{$classNameStart}-#{$space}#{$mode} {
+                #{$name}: #{$space} + '%' !important;
+            }
+        }
+    }
+}
+@mixin flex-props($mode) {
+    @include generate-prop($mode, $flex-props, true) using ($mode, $props, $name) {
+        @each $prop in $props {
+            .#{$name}-#{function.str-replace($prop, ('flex-', 'space-'))}#{$mode} {
+                #{$name}: $prop !important;
+            }
+        }
+    }
+}
+@mixin flex-directions($mode) {
+    @include generate-prop($mode, $flex-derections, false) using ($mode, $props) {
+        @each $prop in $props {
+            .flex-#{$prop}#{$mode} {
+                flex-direction: $prop !important;
+            }
+        }
+    }
+}
+@mixin z-index($mode) {
+    @include generate-prop($mode, $z-index) using ($mode, $index) {
+        .z-index-#{$index}#{$mode} {
+            z-index: $index !important;
+        }
+    }
+}
+@mixin font-weight() {
+    @each $font-weight in $font-weights {
+        .fw-#{$font-weight} {
+            font-weight: $font-weight !important;
+        }
+    }
+}
+@mixin cursor() {
+    @each $cursor in $cursors {
+        .cursor-#{$cursor} {
+            cursor: $cursor !important;
+        }
+    }
+}
+@mixin position() {
+    @each $prop in $position {
+        .position-#{$prop} {
+            position: $prop !important;
+        }
+    }
+}
+@mixin text-align($mode) {
+    @include generate-prop($mode, $text-positions) using ($mode, $prop) {
+        .text-#{$prop}#{$mode} {
+            text-align: $prop;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@use "sass:string" as string;
+
+// STRING REPLACE FUNCTION
+@function str-replace($string, $searchQuery, $replace: '') {
+    @each $search in $searchQuery {
+        $index: string.index($string, $search);
+        @if $index {
+            @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+        }
+    }
+    @return $string;
+}

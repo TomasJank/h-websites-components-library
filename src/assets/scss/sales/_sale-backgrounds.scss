@@ -1,0 +1,44 @@
+$_backgrounds: (
+    /******************************************************************************************
+        Available keys:
+        saleName: (
+            gradient: ( base: egz. linear-gradient(**props**) ),
+            images: ( base: **url** ),
+            props: (
+                key: value,
+                background-position: center
+            )
+        )
+        NOTE: If background or gradient has to be applied on additional 
+                screen sizes add breakpoint key after base (egz. xl: ..... ).
+    ******************************************************************************************/
+);
+
+.default-background-props {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@mixin generate-sale-background-utilitie() {
+    @each $sale-name, $props in $_backgrounds {
+        .#{$sale-name}-bg {
+            @extend .default-background-props;
+            @each $prop, $value in map.get($props, props) {
+                #{$prop}: $value !important;
+            }
+            @if map.get($props, gradient) {
+                background-image: map.get(map.get($props, gradient), base);
+            } @else {
+                background-image: map.get(map.get($props, images), base);
+            }
+            @each $breakpoint, $image in map.get($props, images) {
+                @if $breakpoint != 'base' {
+                    @include mix-media-breakpoint-up($breakpoint) {
+                        background-image: $image;
+                    }
+                }
+            }
+        }
+    }
+}
+@include generate-sale-background-utilitie();

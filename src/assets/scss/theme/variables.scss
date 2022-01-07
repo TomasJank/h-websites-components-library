@@ -1,0 +1,24 @@
+$theme-colors: (
+  'success': #00b090,
+  'info': #36a3f7,
+  'warning': #ffcd35,
+  'danger': #fc5185,
+  'light': #ffffff,
+  'dark': #1d1e20,
+  'gray': #727586,
+  'gray-light': #f2f3f6,
+  'header-bg': #36344d,
+  'danger-light': #ffe8ef,
+  'success-dark': #008361,
+  'success-light': #def4f0,
+  'warning-light': #fff8e2,
+  'warning-dark': #fea419
+);
+
+$border-radius-values: (
+  'border-radius',
+  'border-top-right-radius',
+  'border-top-left-radius',
+  'border-bottom-right-radius',
+  'border-bottom-left-radius'
+);

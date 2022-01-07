@@ -1,0 +1,164 @@
+@use 'sass:map' as map;
+
+/***************
+    COLORS
+****************/
+// PRIMARY
+$_primary: #673DE6;
+$_primary-dark: #5025D1;
+$_primary-light: #EBE4FF;
+
+// 000WEBHOST
+$_webhost-primary: #FF5C62;
+
+// REDS
+$_danger-dark: #D63163;
+$_danger: #FC5185;
+$_danger-light: #FFE8EF;
+
+// GREENS
+$_success-dark: #008361;
+$_success: #00B090;
+$_success-light: #DEF4F0;
+
+// YELLOWS
+$_warning-dark: #FEA419;
+$_warning: #FFCD35;
+$_warning-light: #FFF8E2;
+
+// BLUES
+$_meteorite: #8C85FF;
+$_meteorite-light: #D5DFFF;
+$_meteorite-dark: #2F1C6A;
+$_periwinkle: #C5CDE9;
+$_spindle: #B6BDD3;
+$_white-blue: #F4F5FF;
+
+// GRAYS
+$_gray: #727586;
+$_gray-light: #F2F3F6;
+$_gray-dark: #36344D;
+$_white: #ffffff;
+$_dark: #1D1E20;
+$_manatee: #8C93A9;
+$_gray-border: #DADCE0;
+$_ghost-white: #FAFBFF;
+$_black: #000000;
+
+/***************
+    GRADIENTS
+****************/
+$_dark-header: linear-gradient(180deg, #4816AF 0%, #6233DF 48.96%, #849BFF 95.83%, #849BFF 95.84%);
+$_dark-header-low-contrast: linear-gradient(43.48deg, #4312A5 -3.88%, #6233DF 32.32%, #849BFF 137.32%);
+$_light-header: linear-gradient(21.47deg, #D0D8F5 -14.07%, #F4F5FF 46.4%, #FFFFFF 156.29%);
+
+/***************
+    MAPS
+****************/
+$_colors: (
+    'primary': (
+        base: $_primary,
+        light: $_primary-light,
+        dark: $_primary-dark
+    ),
+    'success': (
+        base: $_success,
+        light: $_success-light,
+        dark: $_success-dark
+    ),
+    'danger': (
+        base: $_danger,
+        light: $_danger-light,
+        dark: $_danger-dark
+    ),
+    'warning': (
+        base: $_warning,
+        light: $_warning-light,
+        dark: $_warning-dark
+    ),
+    'meteorite': (
+        base: $_meteorite,
+        light: $_meteorite-light,
+        dark: $_meteorite-dark
+    ),
+    'gray': (
+        base: $_gray,
+        light: $_gray-light,
+        dark: $_gray-dark,
+        border: $_gray-border,
+        manatee: $_manatee
+    ),
+    'webhost': (
+        base: $_webhost-primary
+    ),
+    'white': (
+        base: $_white,
+        ghost: $_ghost-white,
+        blue: $_white-blue
+    ),
+    'blue': (
+        spindle: $_spindle,
+        periwinkle: $_periwinkle
+    ),
+    'dark': (
+        base: $_dark
+    ),
+    'black': (
+        base: $_black
+    )
+);
+
+$_gradients: (
+    primary: (
+        base: $_dark-header,
+        low-contrast: $_dark-header-low-contrast,
+        light: $_light-header
+    )
+);
+
+/*********************************************
+    Used for getting Color insede property
+    Only for use in SASS
+**********************************************/
+@function get($base, $shade: base) {
+    @if map.has-key($_colors, $base) {
+        @if map.has-key(map.get($_colors, $base), $shade) {
+            $color: map.get(map.get($_colors, $base), $shade);
+            @return $color;
+        }
+        @error "There is no such shade (#{$shade}) specifiet in #{$base} color.";
+    }
+    @error "There is no such color (#{$base}) specifiet in $_colors map.";
+}
+
+/*********************************************
+    For Color and Gradien helpers (utilities)
+**********************************************/
+@mixin cycle-through-map($map) {
+    @each $name, $inner-map in $map {
+        @each $variation, $property in $inner-map {
+            $variation-name: '';
+            @if $variation != 'base' {
+                $variation-name: '-' + $variation;
+            }
+            @content($name, $variation-name, $property);
+        }
+    }
+}
+@mixin generate-base() {
+    @include cycle-through-map($_colors) using ($color-name, $shade-name, $color) {
+        .text-h-#{$color-name}#{$shade-name} {
+            color: $color;
+        }
+        .#{$color-name}#{$shade-name} {
+            background-color: $color;
+        }
+    }
+}
+@mixin generate-gradient() {
+    @include cycle-through-map($_gradients) using ($name, $variation, $gradient) {
+        .bg-h-#{$name}#{$variation} {
+            background-image: $gradient;
+        }
+    }
+}

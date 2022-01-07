@@ -1,0 +1,83 @@
+$spacings: (0, 2, 4, 8, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80, auto);
+$spacing-props: (
+    mt: margin-top,
+    mb: margin-bottom,
+    mr: margin-right,
+    ml: margin-left,
+    m: margin,
+    pt: padding-top,
+    pb: padding-bottom,
+    pr: padding-right,
+    pl: padding-left,
+    p: padding,
+);
+$percentage-values: (10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+$display: (none, block, flex);
+$position: (absolute, relative, fixed, sticky);
+$flex-props: (
+    align-items: (
+        center,
+        baseline,
+        flex-start,
+        flex-end,
+        stretch,
+    ),
+    justify-content: (
+        center,
+        space-between,
+        space-around,
+        space-evenly,
+        flex-start,
+        flex-end,
+    ),
+);
+$flex-derections: (row, column);
+$text-positions: (center, left, right, justify);
+$z-index: (0, 1, 100, 200, 999);
+$font-weights: (500, 700);
+$cursors: (pointer, help, not-allowed);
+$button: (
+    width: (
+        sm: (
+            md: 156px,
+            lg: 160px,
+            xl: 168px,
+        ),
+        md: (
+            md: 242px,
+            lg: 248px,
+            xl: 264px,
+        ),
+        lg: (
+            md: 328px,
+            lg: 336px,
+            xl: 360px,
+        ),
+    ),
+    height: (
+        48,
+        50,
+        60,
+        64,
+    ),
+    radius: (
+        2,
+        3,
+        8,
+        16,
+        20,
+        100,
+    ),
+);
+$breakpoints: (
+    xs: 0,
+    md: 420,
+    lg: 768,
+    xl: 1200,
+);
+$container-widths: (
+    xl: 1128px,
+    lg: 100%,
+    md: 100%,
+    xs: 100%,
+);
