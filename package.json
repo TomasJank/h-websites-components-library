@@ -1,7 +1,6 @@
 {
-  "name": "hWebsites-components-library",
+  "name": "@tomasjank/hwebsites-components-library",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/h-websites-components-library.ssr.js",
   "browser": "dist/h-websites-components-library.esm.js",
   "module": "dist/h-websites-components-library.esm.js",
@@ -44,5 +43,16 @@
   },
   "engines": {
     "node": ">=12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomasJank/h-websites-components-library.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TomasJank/h-websites-components-library/issues"
+  },
+  "homepage": "https://github.com/TomasJank/h-websites-components-library#readme",
+  "description": ""
 }
