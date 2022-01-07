@@ -150,19 +150,8 @@ const __vue_component__$18 = /*#__PURE__*/normalizeComponent({
 var HText = __vue_component__$18;
 
 const isBoolean = val => "boolean" === typeof val;
-const toTitleCase = word => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
-function kebabToCamel(string) {
-  let pascal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  let result = string?.replace(/(-\w)/g, () => matches[1]?.toUpperCase());
-
-  if (pascal) {
-    result = result?.charAt(0)?.toUpperCase() + result?.slice(1);
-  }
-
-  return result;
-}
+const toTitleCase = word => word.charAt(0).toUpperCase() + word.slice(1);
+const kebabToCamel = string => string.replace(/-./g, x => x[1].toUpperCase());
 const camelToDash = str => str.replace(/(^[A-Z])/, _ref => {
   let [first] = _ref;
   return first.toLowerCase();

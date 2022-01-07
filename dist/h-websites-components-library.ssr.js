@@ -207,22 +207,11 @@ var HText = __vue_component__$18;var isBoolean = function isBoolean(val) {
 var toTitleCase = function toTitleCase(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
-function kebabToCamel(string) {
-  var pascal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var result = string === null || string === void 0 ? void 0 : string.replace(/(-\w)/g, function () {
-    var _matches$;
-
-    return (_matches$ = matches[1]) === null || _matches$ === void 0 ? void 0 : _matches$.toUpperCase();
+var kebabToCamel = function kebabToCamel(string) {
+  return string.replace(/-./g, function (x) {
+    return x[1].toUpperCase();
   });
-
-  if (pascal) {
-    var _result, _result$charAt, _result2;
-
-    result = ((_result = result) === null || _result === void 0 ? void 0 : (_result$charAt = _result.charAt(0)) === null || _result$charAt === void 0 ? void 0 : _result$charAt.toUpperCase()) + ((_result2 = result) === null || _result2 === void 0 ? void 0 : _result2.slice(1));
-  }
-
-  return result;
-}
+};
 var camelToDash = function camelToDash(str) {
   return str.replace(/(^[A-Z])/, function (_ref) {
     var _ref2 = _slicedToArray(_ref, 1),
